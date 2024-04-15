@@ -21,9 +21,19 @@ describe("Notifications Component tests", () => {
         expect(notifications).toBeDefined()
     });
 
-    it("renders the text Here is the list of notifications", () => {
-
+    it("un-organized list is defined", () => {
+        const notifications = shallow(<notifications />)
+        expect(notifications.find("ul")).toBeDefined()
+    })
+    
+    it("renders three list items", () => {
+        const notifications = shallow(<Notifications />);
+        expect(notifications.find("li")).toHaveLength(3);
     });
-
-    it("renders three list items", () => {});
+    
+    it("renders the text Here is the list of notifications", () => {
+        const notifications = shallow(<Notifications />);
+        expect(notifications.find("p").text())
+        .toBe("Here is the list of notifications");
+    });
 });
