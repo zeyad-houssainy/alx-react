@@ -11,7 +11,9 @@ module.exports = {
 		hot: true,
 		port: 9000,
 		compress: true,
-		contentBase: path.join(__dirname, '../dist'),
+		static: {
+			directory: path.join(__dirname, '../dist'),
+		}, // This line had an error
 	},
 	devtool: 'inline-source-map',
 	module: {
