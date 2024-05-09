@@ -29,8 +29,14 @@ module.exports = {
 							bypassOnDebug: true, // Webpack@1.x
 							disable: true, // Webpack@2.x and newer
 						},
-					},
-				],
+					}],
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use:{
+					loader: 'babel-loader',
+				},
 			},
 		],
 	},
