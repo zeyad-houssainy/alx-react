@@ -1,24 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-/* eslint-enable no-unused-vars */
-import './Notifications'; // Adjust the path as necessary
+import Notifications from './Notifications';
 import {shallow} from 'enzyme';
-import {describe} from 'jest'; // Import the describe function from jest
-import {it} from 'jest'; // Import the it function from jest
-import {expect} from 'jest'; // Import the expect function from jest
-
-// Describe("App Component tests", () => {
-//   it("Runs without crash", () => {
-//     const app = shallow(<App />);
-//     expect(app).toBeDefined();
-//   });
-
-//   it("App renders a div with the class App-header", () => {
-//     const app = shallow(<App />);
-//     expect(app.find(".App-header")).toBeDefined();
-//   });
-
-// });
 
 describe('Notifications Component tests', () => {
 	it('Runs without crash', () => {

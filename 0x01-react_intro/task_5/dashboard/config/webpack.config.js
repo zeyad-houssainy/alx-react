@@ -13,7 +13,8 @@ module.exports = {
 		compress: true,
 		static: {
 			directory: path.join(__dirname, '../dist'),
-		}, // This line had an error
+		},
+		contentBase: './dist',
 	},
 	devtool: 'inline-source-map',
 	module: {
@@ -24,14 +25,17 @@ module.exports = {
 			},
 			{
 				test: /\.(gif|png|jpe?g|svg)$/i,
-				use: ['file-loader',
+				use: [
+					'file-loader',
 					{
 						loader: 'image-webpack-loader',
 						options: {
 							bypassOnDebug: true, // Webpack@1.x
 							disable: true, // Webpack@2.x and newer
+							presets: ['@babel/preset-env', '@babel/preset-react'],
 						},
-					}],
+					},
+				],
 			},
 			{
 				test: /\.js$/,
