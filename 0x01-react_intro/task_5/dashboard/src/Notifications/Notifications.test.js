@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+/* eslint-enable no-unused-vars */
+import './Notifications'; // Adjust the path as necessary
 import {shallow} from 'enzyme';
-import Notifications from './Notifications';
+import {describe} from 'jest'; // Import the describe function from jest
+import {it} from 'jest'; // Import the it function from jest
+import {expect} from 'jest'; // Import the expect function from jest
 
 // Describe("App Component tests", () => {
 //   it("Runs without crash", () => {
@@ -33,7 +38,8 @@ describe('Notifications Component tests', () => {
 
 	it('renders the text Here is the list of notifications', () => {
 		const notifications = shallow(<Notifications />);
-		expect(notifications.find('p').text())
-			.toBe('Here is the list of notifications');
+		expect(notifications.find('p').text()).toBe(
+			'Here is the list of notifications',
+		);
 	});
 });

@@ -1,4 +1,6 @@
 import {getFooterCopy, getLatestNotification, getFullYear} from './utils';
+import {expect} from '@jest/globals';
+import {test} from '@jest/globals';
 
 // Testing getFooterCopy function
 test('if index is true', () => {
