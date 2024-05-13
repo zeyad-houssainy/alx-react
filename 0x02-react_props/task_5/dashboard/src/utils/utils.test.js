@@ -1,17 +1,24 @@
-import React from 'react';
-import { getFullYear, getFooterCopy, getLatestNotification } from './utils';
+import {getFooterCopy, getLatestNotification, getFullYear} from './utils';
+import {expect} from '@jest/globals';
+import {test} from '@jest/globals';
 
-it('getFullYear', () => {
-  expect(getFullYear()).toEqual(new Date().getFullYear());
+// Testing getFooterCopy function
+test('if index is true', () => {
+	expect(getFooterCopy(true)).toBe('Holberton School');
 });
-it('getFooterCopy with true', () => {
-  expect(getFooterCopy(true)).toEqual('Holberton School');
+
+test('if index is False', () => {
+	expect(getFooterCopy(false)).toBe('Holberton School main dashboard');
 });
-it('getFooterCopy with false', () => {
-  expect(getFooterCopy(false)).toEqual('Holberton School main dashboard');
+
+// Testing getFooterCopy function
+test('Get the current year value', () => {
+	expect(getFullYear()).toBe(2024);
 });
-it('getLatestNotification', () => {
-  expect(getLatestNotification()).toEqual(
-    '<strong>Urgent requirement</strong> - complete by EOD'
-  );
+
+// Testing getFooterCopy function
+test('Function get specific value', () => {
+	expect(getLatestNotification()).toBe(
+		'<strong>Urgent requirement</strong> - complete by EOD',
+	);
 });

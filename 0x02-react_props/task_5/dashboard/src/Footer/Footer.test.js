@@ -1,12 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import Footer from './Footer';
 
-const wrapper = shallow(<Footer />);
+describe('App Component tests', () => {
+	it('Runs without crash', () => {
+		const footer = shallow(<Footer />);
+		expect(footer).toBeDefined();
+	});
 
-it('renders without crashing', () => {
-  shallow(<Footer />);
-});
-it('renders footer', () => {
-  expect(wrapper.find('footer.footer').exists()).toEqual(true);
+	it('App renders a div with the class App-footer', () => {
+		const footer = shallow(<Footer />);
+		expect(footer.find('.App-footer')).toBeDefined();
+	});
 });
