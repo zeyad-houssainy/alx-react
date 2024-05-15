@@ -1,11 +1,11 @@
-.App-header {
+.header {
     display: flex;
     align-items: center;
     color: var(--font-color-primary);
     border-bottom: var(--border-bottom);
 }
 
-.App-header img {
+.header img {
     width: 40%;
     max-width: 400px;
 }

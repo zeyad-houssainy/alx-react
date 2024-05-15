@@ -12,9 +12,9 @@ module.exports = {
 		port: 9000,
 		compress: true,
 		static: {
-			directory: path.join(__dirname, 'dist'),
+			directory: path.join(__dirname, '../dist'),
 		},
-		contentBase: './dist',
+		historyApiFallback: true,
 	},
 	devtool: 'inline-source-map',
 	module: {

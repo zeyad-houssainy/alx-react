@@ -11,7 +11,7 @@
 
 
 /* this app should be applies on all files */
-.App {
+.app {
     height: 100vh;
     width: 100vw;
     --font-color-primary: rgb(230, 5, 5);
@@ -22,8 +22,4 @@
 }
 
 
-.App-body {
-    border-bottom: var(--border-bottom);
-    height: 48%;
 
-}

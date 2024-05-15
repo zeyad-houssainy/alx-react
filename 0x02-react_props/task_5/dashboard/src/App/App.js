@@ -8,7 +8,7 @@ import './App.css';
 const App = () => (
 	// Class name app was not added
 	<>
-		<Notification />
+		<Notifications />
 		<Header />
 		<Login />
 		<Footer />
