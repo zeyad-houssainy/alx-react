@@ -8,7 +8,7 @@ import CourseList from "../CourseList/CourseList";
 import PropTypes from "prop-types";
 
 
-const App = ({ isLoggedIn }) => (
+const App = ({ isLoggedIn = false }) => (
   // Class name app was not added
   <>
     <Notifications />
@@ -18,10 +18,10 @@ const App = ({ isLoggedIn }) => (
   </>
 );
 
-
-App.defaultProps = {
-  isLoggedIn: false,
-};
+// Not used anymore and causes issues 
+// App.defaultProps = {
+//   isLoggedIn: ,
+// };
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
