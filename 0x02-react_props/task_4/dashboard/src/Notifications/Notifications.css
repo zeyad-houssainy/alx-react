@@ -1,6 +1,15 @@
 .notifications {
 	padding: 1em;
 	border: 2px dashed red;
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	margin-left: auto;
+}
+
+.menuItem{
+	margin: 0;
+	text-align: end;
 }
 
 .close-icon{

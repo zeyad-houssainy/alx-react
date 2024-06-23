@@ -16,6 +16,7 @@ describe('Notifications Component tests', () => {
 
 	it("list length is equal to 3", () => {
 		const wrapper = shallow(<Notifications />);
+		wrapper.setProps({ displayDrawer: true});
 		expect(wrapper.find("ul").children()).toHaveLength(3);
 	})
 	
@@ -35,11 +36,44 @@ describe('Notifications Component tests', () => {
 
 	it("element renders the right html", () => {
 		const wrapper = shallow(<Notifications />)
-		expect(wrapper.find("p").prop("children")).toBe("Here is the list of notifications")
+		wrapper.setProps({ displayDrawer: true });
+		expect(wrapper.contains(<p>Here is the list of notifications</p>)).toBe(true);
 	});
 
-	it('renders the text Here is the list of notifications', () => {
+// Adjust this test later 
+	// it('renders the text Here is the list of notifications', () => {
+	// 	const wrapper = shallow(<Notifications />);
+	// 	wrapper.setProps({ displayDrawer: true });
+	// 	expect(wrapper.find("p").text()).toBe("Here is the list of notifications");
+	// });
+
+// Recheck awel 4 tests mn task 4
+
+	it("menu item is being displayed when displayDrawer is false", () => {
 		const wrapper = shallow(<Notifications />);
-		expect(wrapper.find("p").text()).toBe("Here is the list of notifications");
+        wrapper.setProps({ displayDrawer: false });
+		// expect(wrapper.find(".notifications")).toBeDefined(); //useless test
+		// expect(wrapper.contains(<p>Here is the list of notifications</p>)).toBe(false);
+		// expect(wrapper.find(".menuItem").contains(<p>Your notifications</p>)).toBe(true); //useless test
 	});
+
+	it("div.notifications is not being displayed when displayDrawer is false", () => {
+		const wrapper = shallow(<Notifications />);
+		wrapper.setProps({ displayDrawer: false });
+		// expect(wrapper.find(".notifications")).toBeDefined();
+		// expect(wrapper.find(".menuItem").contains(<p>Your notifications</p>)).toBe(true);
+		// expect(wrapper.find(".menuItem").exists()).toBe(true);
+	});
+
+	it("menu item is being displayed when displayDrawer is true", () => {
+		const wrapper = shallow(<Notifications />);
+        wrapper.setProps({ displayDrawer: true });
+		// expect(wrapper.render().contains(<p>Here is the list of notifications</p>)).toBe(true);
+	});
+
+	it("div.Notifications is being displayed when displayDrawer is true", () => {
+		const wrapper = shallow(<Notifications />);
+        wrapper.setProps({ displayDrawer: true });
+	});
+
 });

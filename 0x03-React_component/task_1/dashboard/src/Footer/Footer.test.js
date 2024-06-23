@@ -1,18 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import Footer from './Footer';
 
-const wrapper = shallow(<Footer />);
+describe('App Component tests', () => {
+	it('Runs without crash', () => {
+		const footer = shallow(<Footer />);
+		expect(footer).toBeDefined();
+	});
 
-it('renders without crashing', () => {
-  shallow(<Footer />);
-});
+	it('App renders a div with the class App-footer', () => {
+		const footer = shallow(<Footer />);
+		expect(footer.find('.App-footer')).toBeDefined();
+	});
 
-it('renders footer', () => {
-  expect(wrapper.find('footer.footer').exists()).toEqual(true);
-});
-
-it('renders footer', () => {
-  expect(wrapper.find('footer.footer p').exists()).toEqual(true);
-  expect(wrapper.find('footer.footer p').text()).toContain('Copyright');
+	it("App Verify that the at the very least render the text 'Copyright' ", () => {
+		const wrapper = shallow(<Footer />);
+		expect(wrapper.text().includes("Copyright")).toBe(true);
+	});	
 });

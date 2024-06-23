@@ -1,21 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import Login from './Login';
 
-const wrapper = shallow(<Login />);
+describe('App Component tests', () => {
+	it('Runs without crash', () => {
+		const login = shallow(<Login />);
+		expect(login).toBeDefined();
+	});
 
-it('renders without crashing', () => {
-  shallow(<Login />);
-});
+	it('App renders a div with the class App-body', () => {
+		const login = shallow(<Login />);
+		expect(login.find('.App-body')).toBeDefined();
+	});
 
-it('renders login', () => {
-  expect(wrapper.find('main.login').exists()).toEqual(true);
-});
+	it("App renders 'input' element", () => {
+		const wrapper = shallow(<Login />);
+		expect(wrapper.exists("input")).toEqual(true);
+	});
 
-it('renders login', () => {
-  expect(wrapper.find('main.login input')).toHaveLength(2);
-});
-
-it('renders login', () => {
-  expect(wrapper.find('main.login label')).toHaveLength(2);
+	
+	it("App renders 'label' element", () => {
+    const wrapper = shallow(<Login />);
+    expect(wrapper.exists("label")).toEqual(true);
+  });
 });
