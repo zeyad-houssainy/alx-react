@@ -52,12 +52,3 @@ describe("App Component tests", () => {
     expect(wrapper.contains(<CourseList />)).toBe(true);
   });
 });
-
-describe("Testing App Logout Function", () => {
-  // verify that when the keys control and h are pressed the logOut function, 
-  // passed as a prop, is called and the alert function is called with the string Logging you out
-
-  it("", () => {
-    
-  })
-})

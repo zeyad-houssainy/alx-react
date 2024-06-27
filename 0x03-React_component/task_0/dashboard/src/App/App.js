@@ -11,31 +11,7 @@ import { getLatestNotification } from "../utils/utils";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.isLoggedIn = props.isLoggedIn;
-    this.logOut = props.logOut;
-    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
-
-  // Add an event listener when the component is
-  // mounted to listen to when the user is pressing down the keyboard keys
-  handleKeyDown = (e) => {
-      e.preventDefault()
-      if(e.ctrlKey && e.key == "h") {
-        alert("Logging you out");
-        this.logOut();
-      } else {
-        console.log(`You pressed ${e.key}`);
-      }
-  };
-
-  componentDidMount = () => {
-    window.addEventListener("keydown", this.handleKeyDown);
-  }
-
-  componentWillUnmount = () => {
-    window.removeEventListener("keydown", this.handleKeyDown)
-  }
-  
 
   static listCourses = [
     { id: 1, name: "ES6", credit: 60 },
@@ -50,30 +26,23 @@ class App extends React.Component {
   ];
 
   render() {
-    return (
+    return(
       <>
-        <Notifications listNotifications={this.listNotifications} />
+        <Notifications listNotifications={App.listNotifications} />
         <Header />
-        {this.props.isLoggedIn ? (
-          <CourseList listCourses={this.listCourses} />
-        ) : (
-          <Login />
-        )}
+        {this.props.isLoggedIn ? <CourseList listCourses={App.listCourses} /> : <Login />}
         <Footer />
       </>
-    );
+    )
   }
-
-  static propTypes = {
-    isLoggedIn: PropTypes.bool,
-    logOut: PropTypes.func,
-  };
-
-  static defaultProps = {
-    isLoggedIn: false,
-    logOut: () => {},
-  };
 }
 
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
+
+App.defaultProps = {
+  isLoggedIn: false
+};
 
 export default App;
