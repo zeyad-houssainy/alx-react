@@ -13,7 +13,7 @@ class NotificationItem extends React.Component {
     this.type = props.type;
     this.html = props.html;
     this.value = props.value;
-    // this.markAsRead = this.markAsRead.bind(this)
+    this.id = props.id;
   }
 
   render() {
@@ -21,15 +21,15 @@ class NotificationItem extends React.Component {
       <>
         {this.props.type && this.props.value ? (
           <li
+            onClick={() => {this.props.markAsRead(this.props.id)}}
             data-notification-type={this.props.type}
-            // onClick={() => markAsRead(notification.id)}
-            >
+          >
             {this.props.value}
           </li>
         ) : null}
         {this.props.html ? (
           <li
-          // onClick={() => markAsRead(notification.id)}
+            onClick={() => this.props.markAsRead(this.props.id)}
             data-notification-type={this.props.type}
             dangerouslySetInnerHTML={{ __html: this.props.html }}
           ></li>
@@ -45,6 +45,7 @@ NotificationItem.propTypes = {
   }),
   type: PropTypes.string.isRequired,
   value: PropTypes.string,
+  markAsRead: PropTypes.func,
 };
 
 NotificationItem.defaultProps = {
