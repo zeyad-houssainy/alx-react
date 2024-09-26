@@ -7,6 +7,9 @@ import Login from "../Login/Login";
 import Notifications from "../Notifications/Notifications";
 import "./App.css";
 import { getLatestNotification } from "../utils/utils";
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom"
+import BodySection from "../BodySection/BodySection"
+
 
 class App extends React.Component {
   constructor(props) {
@@ -54,10 +57,17 @@ class App extends React.Component {
         <Notifications listNotifications={App.mockListNotifications} />
         <Header />
         {this.props.isLoggedIn ? (
-          <CourseList listCourses={App.mockListCourses} />
+          <BodySectionWithMarginBottom title="Course list">
+            <CourseList listCourses={App.mockListCourses} />
+          </BodySectionWithMarginBottom>
         ) : (
-          <Login />
+          <BodySectionWithMarginBottom title="Log in to continue">
+            <Login />
+          </BodySectionWithMarginBottom>
         )}
+        <BodySection title="News from the School">
+          <p>Random text</p>
+        </BodySection>
         <Footer />
       </>
     );
