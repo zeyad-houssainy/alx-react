@@ -9,15 +9,7 @@ import "./App.css";
 import { getLatestNotification } from "../utils/utils";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom"
 import BodySection from "../BodySection/BodySection"
-import TestReactFeature from "../testingFeature/testingFeature";
-import WithLogging from "../HOC/WithLogging";
 
-// const NotificationsWithLogging = WithLogging(Notifications);
-// const HeaderWithLogging = WithLogging(Header);
-// const CourseListWithLogging = WithLogging(CourseList);
-// const LoginWithLogging = WithLogging(Login);
-// const BodySectionWithLogging = WithLogging(BodySection);
-// const FooterWithLogging = WithLogging(Footer);
 
 class App extends React.Component {
   constructor(props) {
@@ -42,7 +34,7 @@ class App extends React.Component {
   componentDidMount = () => {
     window.addEventListener("keydown", this.handleKeyDown);
   };
-  
+
   componentWillUnmount = () => {
     window.removeEventListener("keydown", this.handleKeyDown);
   };
@@ -77,7 +69,6 @@ class App extends React.Component {
           <p>Random text</p>
         </BodySection>
         <Footer />
-        {/* <TestReactFeature /> */}
       </>
     );
   }
@@ -92,5 +83,4 @@ App.defaultProps = {
   logOut: () => {},
 };
 
-
-export default WithLogging(App);
+export default App;

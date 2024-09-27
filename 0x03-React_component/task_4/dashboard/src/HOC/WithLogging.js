@@ -1,23 +1,23 @@
 import React from "react";
 
 const WithLogging = (WrapperComponent) => {
-    // const nameOfWrapperComponent = WrapperCom   ponent.displayName || WrapperComponent.name || 'Component';
 
     class NewComponent extends React.Component {
 
         componentDidMount() {
-            console.log(`Component ${WrapperComponent} is mounted`);
+            console.log(`Component ${WrapperComponent.name || "Component"} is mounted`);
         }
         
         componentWillUnmount() {
-            console.log(`Component ${WrapperComponent} is going to unmount`);
+            console.log(`Component ${WrapperComponent.name || "Component"} is going to unmount`);
         }
         
         render() {
             return <WrapperComponent {...this.props} />;
         }
     }
-    NewComponent.displayName = `WithLogging(${WrapperComponent})`; 
+    NewComponent.displayName = `WithLogging(${WrapperComponent.name || "Component"})`; 
+    // console.log(NewComponent.name);
     return NewComponent;
 }
 
