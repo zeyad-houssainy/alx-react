@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./App.css";
-import { StyleSheet, css } from "aphrodite";
+import { StyleSheet, css, reset, resetInjectedStyle } from "aphrodite";
 
 // Component Files
 import Header from "../Header/Header";
@@ -19,8 +19,10 @@ import TestReactFeatureWithBorder from "../testingFeature/TestingFeature";
 
 
 //Aphrodite CSS styling 
+reset();
+
 const styles = StyleSheet.create({
-  redCollection: {
+  redText: {
     color: "red",
   },
 });
@@ -83,25 +85,26 @@ class App extends React.Component {
           </BodySectionWithMarginBottom>
         )}
         <BodySection title="News from the School">
-          <p>I'm Batman 🦇</p>
+          <p className={css(styles.redText)}>I'm Batman 🦇</p>
         </BodySection>
         <Footer />
-        <TestingInlineStyle className={css(styles.redCollection)} />
+        <TestingInlineStyle style={styles.redText} />
         <TestReactFeatureWithBorder />
       </>
     );
   }
 }
 
-//PropType Congigurations
+//PropType Configurations
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
-
+// Default Props Configurations
 App.defaultProps = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   logOut: () => {},
 };
+
 
 export default App;
