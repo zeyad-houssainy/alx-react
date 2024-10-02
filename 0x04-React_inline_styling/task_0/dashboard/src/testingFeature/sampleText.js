@@ -1,4 +1,4 @@
-import Stylesheet from "aphrodite"
+
 import React from "react";
 
 const TestingInlineStyle = () => {

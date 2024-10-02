@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    align-items: center;
+    color: var(--font-color-primary);
+    border-bottom: var(--border-bottom);
+}
+
+.header img {
+    width: 40%;
+    max-width: 400px;
+}

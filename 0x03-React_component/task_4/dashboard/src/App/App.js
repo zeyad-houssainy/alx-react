@@ -9,6 +9,7 @@ import "./App.css";
 import { getLatestNotification } from "../utils/utils";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom"
 import BodySection from "../BodySection/BodySection"
+// import testReactFeatureWithBorder from "../testingFeature/testingFeature"
 
 
 class App extends React.Component {
@@ -39,26 +40,27 @@ class App extends React.Component {
     window.removeEventListener("keydown", this.handleKeyDown);
   };
 
-  static mockListCourses = [
-    { id: 1, name: "ES6", credit: 60 },
-    { id: 2, name: "Webpack", credit: 20 },
-    { id: 3, name: "React", credit: 40 },
-  ];
-
-  static mockListNotifications = [
-    { id: 1, type: "default", value: "New course available" },
-    { id: 2, type: "urgent", value: "New resume available" },
-    { id: 3, type: "urgent", html: getLatestNotification() }, // {__html: getLatestNotification()} use this instead but will not get deisred output
-  ];
-
+  
   render() {
+    const mockListCourses = [
+      { id: 1, name: "ES6", credit: 60 },
+      { id: 2, name: "Webpack", credit: 20 },
+      { id: 3, name: "React", credit: 40 },
+    ];
+  
+    const mockListNotifications = [
+      { id: 1, type: "default", value: "New course available" },
+      { id: 2, type: "urgent", value: "New resume available" },
+      { id: 3, type: "urgent", html: getLatestNotification() }, // {__html: getLatestNotification()} use this instead but will not get deisred output
+    ];
+
     return (
       <>
-        <Notifications listNotifications={App.mockListNotifications} />
+        <Notifications listNotifications={mockListNotifications} />
         <Header />
         {this.props.isLoggedIn ? (
           <BodySectionWithMarginBottom title="Course list">
-            <CourseList listCourses={App.mockListCourses} />
+            <CourseList listCourses={mockListCourses} />
           </BodySectionWithMarginBottom>
         ) : (
           <BodySectionWithMarginBottom title="Log in to continue">
@@ -69,6 +71,7 @@ class App extends React.Component {
           <p>Random text</p>
         </BodySection>
         <Footer />
+        {/* <testReactFeatureWithBorder /> */}
       </>
     );
   }

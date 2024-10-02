@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 import "./App.css";
+import { StyleSheet, css } from "aphrodite";
 
 // Component Files
 import Header from "../Header/Header";
@@ -17,6 +18,15 @@ import TestingInlineStyle from "../testingFeature/sampleText";
 import TestReactFeatureWithBorder from "../testingFeature/TestingFeature";
 
 
+//Aphrodite CSS styling 
+const styles = StyleSheet.create({
+  redCollection: {
+    color: "red",
+  },
+});
+
+
+// App Class Component 
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -76,21 +86,21 @@ class App extends React.Component {
           <p>I'm Batman 🦇</p>
         </BodySection>
         <Footer />
-        <TestingInlineStyle />
+        <TestingInlineStyle className={css(styles.redCollection)} />
         <TestReactFeatureWithBorder />
       </>
     );
   }
 }
 
-
-
+//PropType Congigurations
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
+
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   logOut: () => {},
 };
 
