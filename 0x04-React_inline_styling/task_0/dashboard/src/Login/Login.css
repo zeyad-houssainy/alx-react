@@ -1,11 +1,5 @@
-:root {
-    --holberton-red: #e1484c;
-}
+.login {
+    /* border-bottom: var(--border-bottom); */
+    height: 48%;
 
-.App-body {
-    padding: 36px 24px;
-}
-
-.App-body input {
-    margin: 0 16px 0 8px;
 }

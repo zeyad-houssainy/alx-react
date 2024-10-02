@@ -1,20 +1,11 @@
-:root {
-    --holberton-red: #e1484c;
-}
-
-.App-header {
+.header {
     display: flex;
-    flex-direction: row;
-    justify-content: left;
-    border-bottom: 3px solid var(--holberton-red);
-    margin-top: 30px;
+    align-items: center;
+    color: var(--font-color-primary);
+    border-bottom: var(--border-bottom);
 }
 
-.App-header img {
-    width: 150px;
-}
-
-.App-header h1 {
-    margin: auto auto auto 0;
-    color: var(--holberton-red);
+.header img {
+    width: 40%;
+    max-width: 400px;
 }

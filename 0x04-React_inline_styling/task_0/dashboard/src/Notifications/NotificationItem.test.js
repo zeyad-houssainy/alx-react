@@ -1,23 +1,34 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import NotificationItem from './NotificationItem';
+import React from "react";
+import NotificationItem from "./NotificationItem";
+import {shallow} from "enzyme";
 
-describe("Testing <NotificationItem />", () => {
-  let  wrapper;
+describe("NotificationItem tests", () => {
+    it("runs without crash", () => {
+        const wrapper = shallow(<NotificationItem />);
+        expect(wrapper).toBeDefined();
+    })
 
-  it("<NotificationItem /> renders without crashing", () => {
-    wrapper = shallow(<NotificationItem />);
-    expect(wrapper.exists());
-  });
+    it("type should be rendered with the data-notification-type attribute", () => {
+        const wrapper = shallow(<NotificationItem />);
+        wrapper.setProps({type: "default", value: "test"});
+        // excpect(wrapper.find("li").prop("data-notification-type")).toBeDefined();
+        expect(wrapper.find("li").prop("data-notification-type")).toEqual("default");
+        expect(wrapper.text()).toEqual("test");
+    });
 
-  it("<NotificationItem />  renders the correct html by passing dummy type and value props,", () => {
-    wrapper = shallow(<NotificationItem type="default" value="test" />);
-    expect(wrapper.find("li").text()).toBe("test");
-    expect(wrapper.find("li").prop("data-notification-type")).toBe("default");
-  });
+    it("html rendered with dangerouslySetInnerHTML attribute", () => {
+        const wrapper = shallow(<NotificationItem />);
+        wrapper.setProps({html: "<u>test</u>"});
+        expect(wrapper.find("li").prop("dangerouslySetInnerHTML")).toEqual({__html: "<u>test</u>"});
+    });
+    
+// Add the test below later
+    // Verify that by passing a dummy html prop, it renders the correct html (for example: html={{ __html: '<u>test</u>' }})
+    // it("renders the correct html for type and value props", () => {
+    //     const wrapper = shallow(<NotificationItem />);
+    //     wrapper.setProps({ value: "test"});
+    //     expect(wrapper.text()).toEqual("test");
+    // });
 
-  it("<NotificationItem />  renders the correct html by passing a dummy html prop,", () => {
-    wrapper = shallow(<NotificationItem html={{__html:"<u>test</u>"}} />);
-    expect(wrapper.find("li").html()).toBe("<li data-notification-type=\"default\"><u>test</u></li>");
-  });
-});
+
+})

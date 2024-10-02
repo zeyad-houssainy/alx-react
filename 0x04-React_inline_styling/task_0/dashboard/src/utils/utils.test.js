@@ -1,21 +1,24 @@
-import { getFooterCopy, getFullYear, getLatestNotification } from './utils';
+import {getFooterCopy, getLatestNotification, getFullYear} from './utils';
+import {expect} from '@jest/globals';
+import {test} from '@jest/globals';
 
-describe("Utils functions", () => {
-  
-  test("getFullYear returns the correct year", () => {
-    expect(getFullYear()).toEqual(2022);
-  });
+// Testing getFooterCopy function
+test('if index is true', () => {
+	expect(getFooterCopy(true)).toBe('Holberton School');
+});
 
-  test("getFooterCopy returns the correct string when the argument is true", () => {
-    expect(getFooterCopy(true)).toEqual("Holberton School");
-  });
+test('if index is False', () => {
+	expect(getFooterCopy(false)).toBe('Holberton School main dashboard');
+});
 
-  test("getFooterCopy returns the correct string when the argument is false", () => {
-    expect(getFooterCopy(false)).toEqual("Holberton School main dashboard");
-  });
+// Testing getFooterCopy function
+test('Get the current year value', () => {
+	expect(getFullYear()).toBe(2024);
+});
 
-  test("getLatestNotification returns the expected string", () => {
-    expect(getLatestNotification()).toEqual("<strong>Urgent requirement</strong> - complete by EOD");
-  });
-
+// Testing getFooterCopy function
+test('Function get specific value', () => {
+	expect(getLatestNotification()).toBe(
+		'<strong>Urgent requirement</strong> - complete by EOD',
+	);
 });
