@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./App.css";
-import { StyleSheet, css, reset, resetInjectedStyle } from "aphrodite";
+import { StyleSheet, css, reset } from "aphrodite";
 
 // Component Files
 import Header from "../Header/Header";

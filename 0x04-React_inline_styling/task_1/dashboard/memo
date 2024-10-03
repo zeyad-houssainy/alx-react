@@ -1,0 +1,12 @@
+
+var blueColor;
+
+const nameOfTheStyle = {
+    ClassName: {
+        style: "Applied style" //color: "red"
+    }
+    blueTag: {
+        backgroundcolor: blueColor,
+        color: blueColor,
+    }
+}
