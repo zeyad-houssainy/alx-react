@@ -1,7 +1,5 @@
 import React from 'react';
 import NotificationItem from './NotificationItem';
-import './Notifications.css';
-import {getLatestNotification} from '../utils/utils';
 import closeIcon from '../assets/close-icon.png';
 import PropTypes from "prop-types";
 import NotificationItemShape from "./NotificationItemShape";
@@ -9,27 +7,27 @@ import { StyleSheet, css } from "aphrodite";
 
 //aphrodite
 const styles = StyleSheet.create({
-  notifications : {
-    padding: '1em',
-    border: '2px dashed red',
-    width: '400px',
-    marginLeft: 'auto',
-    position: 'relative',
+  notifications: {
+    padding: "1em",
+    border: "2px dashed red",
+    width: "400px",
+    marginLeft: "auto",
+    position: "relative",
   },
   notificationsParagraph: {
-    margin: '0',
-   },
+    margin: "0",
+  },
   menuItem: {
-    margin: '0',
-    textAlign: 'end',
+    margin: "0",
+    textAlign: "end",
   },
   closeIcon: {
-    height: '10px',
-    width: '10px',
+    height: "10px",
+    width: "10px",
     justifyContent: "center",
     alignSelf: "center",
   },
-})
+});
 
 
 // React Component

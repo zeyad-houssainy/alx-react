@@ -1,12 +1,20 @@
 import React, { PureComponent } from "react";
-import "./Notifications.css";
 import PropTypes from "prop-types";
+import { StyleSheet, css } from "aphrodite";
+
+    
+    //aphrodite
+//     const styles = StyleSheet.create({
+//       default: {
+//         color: 'red',
+//     },
+//       urgent: {
+//         color: 'blue',
+//     },
+// });
 
 
-// In the NotificationItem Class:
-//   Modify the li element to call the new function markAsRead on click. It should send the id of the notification
-//   Define the new property type and the default property for the new properties
-
+// React Component
 class NotificationItem extends React.PureComponent {
   constructor(props) {
     super(props);
