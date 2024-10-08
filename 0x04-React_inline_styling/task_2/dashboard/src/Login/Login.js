@@ -30,7 +30,7 @@ const Login = () => (
 				id='password'
 				placeholder='Enter your Password'
 			/>
-			{'\t'}
+			<br />
 			<button>ok</button>
 		</div>
 	</>

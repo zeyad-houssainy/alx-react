@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   // test aphrodite object
   test: {
     border: "1px solid red",
-    backgroundColor: "red",
+    backgroundColor: "#fcb103",
   },
 });
 
@@ -121,7 +121,7 @@ App.propTypes = {
 };
 // Default Props Configurations
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   logOut: () => {},
 };
 

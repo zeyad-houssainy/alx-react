@@ -8,7 +8,7 @@ import { StyleSheet, css } from "aphrodite";
 const styles = StyleSheet.create({
     bodySectionWithMargin:{
         marginBottom: "40px",
-        border: "2px solid blue" // temp
+        // border: "2px solid blue" // temp
     }
 })
 

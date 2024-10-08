@@ -4,14 +4,14 @@ import { StyleSheet, css } from "aphrodite";
 
     
     //aphrodite
-//     const styles = StyleSheet.create({
-//       default: {
-//         color: 'red',
-//     },
-//       urgent: {
-//         color: 'blue',
-//     },
-// });
+    const styles = StyleSheet.create({
+      default: {
+        color: 'red',
+    },
+      urgent: {
+        color: 'blue',
+    },
+});
 
 
 // React Component
@@ -27,23 +27,12 @@ class NotificationItem extends React.PureComponent {
   render() {
     return (
       <>
-        {this.props.type && this.props.value ? (
-          <li
-            onClick={() => {
-              this.props.markAsRead(this.props.id);
-            }}
-            data-notification-type={this.props.type}
-          >
-            {this.props.value}
-          </li>
-        ) : null}
-        {this.props.html ? (
-          <li
-            onClick={() => this.props.markAsRead(this.props.id)}
-            data-notification-type={this.props.type}
-            dangerouslySetInnerHTML={{ __html: this.props.html }} // fix this line
-          ></li>
-        ) : null}
+        <li className={css(this.type == "default" ? styles.default : styles.urgent )}//selecting style based on urgency
+            onClick={() => {this.props.markAsRead(this.props.id);}}
+            dangerouslySetInnerHTML={this.props.html ? { __html: this.props.html } : undefined}
+            >
+          {this.props.value}
+        </li>
       </>
     );
   }

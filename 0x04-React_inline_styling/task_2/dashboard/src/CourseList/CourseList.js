@@ -2,7 +2,6 @@ import React from "react";
 import CourseListRow from "./CourseListRow";
 import PropTypes from "prop-types";
 import CourseShape from "./CourseShape";
-import "./CourseList.css"
 import {StyleSheet, css} from "aphrodite";
 
 
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
         border: '1px solid #ddd',
         fontSize: '1.2rem',
         marginBottom: '15em',
-        border: "3px dotted red" // temp
+        // border: "3px dotted red" // temp
     }
 
 })
@@ -46,7 +45,5 @@ CourseList.propTypes = {
 CourseList.defaultProps = {
     listCourses: [],
 }
-
-
 
 export default CourseList;

@@ -1,33 +1,54 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { StyleSheet, css } from "aphrodite";
 
-const rowStyle = {
-  backgroundColor: '#f5f5f5ab'
-};
 
-const headerRowStyle = {
-  backgroundColor: "#deb5b545"
-};
 
-// document.querySelector("th").style(headerRowStyle)
+// aphrodite
+const styles = StyleSheet.create({
+  rowStyle: {
+    backgroundColor: "#f5f5f5ab",
+  },
+  headerRowStyle: {
+    backgroundColor: "#deb5b545",
+  },
+  th: {
+    borderBottom: `1px solid #ddd`,
+    color: "#01075c",
+  },
+  td: {
+    width: "80%",
+  },
+  table: {
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+
+});
+
+
+// first row is not being merged y3ne colSpan={2} is not working
 
 // CourseListRow component
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
   return (
-    <tr style={isHeader ? headerRowStyle : rowStyle}>
+    <tr className={css(isHeader ? styles.headerRowStyle : styles.rowStyle)}>
       {isHeader ? (
         textSecondCell === null ? (
-          <th colSpan={2}>{textFirstCell}</th>
+          // when having one header cell filled
+          <th colSpan={2} className={css(styles.th)}>{textFirstCell}</th>
         ) : (
+          // when having two header cells filled
           <>
-            <th>{textFirstCell}</th>
-            <th>{textSecondCell}</th>
+            <th className={css(styles.th)}>{textFirstCell}</th>
+            <th className={css(styles.th)}>{textSecondCell}</th>
           </>
         )
       ) : (
+        // cell is not header
         <>
-          <td>{textFirstCell}</td>
-          <td>{textSecondCell}</td>
+          <td className={css(styles.td)}>{textFirstCell}</td>
+          <td className={css(styles.td)}>{textSecondCell}</td>
         </>
       )}
     </tr>
