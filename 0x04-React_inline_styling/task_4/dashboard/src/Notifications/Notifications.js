@@ -6,6 +6,27 @@ import NotificationItemShape from "./NotificationItemShape";
 import { StyleSheet, css } from "aphrodite";
 
 //aphrodite
+const opacityKeyframes = {
+  from: {
+    opacity: 0.5,
+  },
+  to: {
+    opacity: 1,
+  },
+};
+
+const translateKeyframes = {
+  "0%": {
+    transform: "translateX(0)",
+  },
+  "50%": {
+    transform: "translateX(100px)",
+  },
+  "100%": {
+    transform: "translateX(0)",
+  },
+};
+
 const styles = StyleSheet.create({
   notifications: {
     padding: "1em",
@@ -44,7 +65,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
   },
+  zippyHeader: {
+    animationName: [opacityKeyframes, translateKeyframes],
+    animationDuration: "3s, 1200ms",
+    animationIterationCount: "infinite",
+  },
 });
+
 
 
 // React Component
@@ -94,7 +121,7 @@ const styles = StyleSheet.create({
                   className={css(styles.closeIcon)}
                 />
               </button>
-              <ul className={css(styles.ul)}>
+              <ul className={css([styles.ul, styles.zippyHeader])}>
                 {this.listNotifications.length > 0 ? (
                   this.listNotifications.map((notification) => {
                     return (
