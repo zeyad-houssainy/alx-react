@@ -1,65 +1,51 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, css } from 'aphrodite';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { StyleSheet, css} from "aphrodite"
 
-function Login(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [enableSubmit, setEnableSubmit] = useState(false);
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    props.logIn(e.target.elements.email.value, e.target.elements.password.value);
-  };
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+//aphrodite
+const styles = StyleSheet.create({
+  login: {
+    height: "48%",
+  },
+  button: {
+    backgroundColor: "#f5f5f5ab",
+    border: "2px solid #d49606",
+    borderRadius: 4,
+    color: "#000",
+    cursor: "pointer",
+    fontSize: 15,
+    fontWeight: "bold",
+    padding: "5px 5px",
+    textAlign: "center",
+    width: "80px",
+  },
+});
 
-  useEffect(() => {
-    if (email != '' && password != '') {
-      setEnableSubmit(true);
-    } else {
-      if (enableSubmit != false) {
-        setEnableSubmit(false);
-      }
-    }
-  }, [email, password]);
-
-  return (
-    <React.Fragment>
-      <div className={css(loginStyles.appBody)}>
-        <p>Login to access the full dashboard</p>
-        <form onSubmit={handleLoginSubmit} >
-          <label htmlFor="email">Email: </label>
-          <input type="email" id="email" name="email" className={loginStyles.inputs} value={email} onChange={handleChangeEmail} />
-          <label htmlFor="password">Password: </label>
-          <input type="password" id="password" name="password" className={loginStyles.inputs} value={password} onChange={handleChangePassword} />
-          <input type="submit" value="Ok" disabled={!enableSubmit}/>
-        </form>
-      </div>
-    </React.Fragment>
-  )
-}
-
-const loginStyles = StyleSheet.create({
-	appBody: {
-    padding: '36px 24px',
-		'@media (max-width: 900px)': {
-      display: 'flex',
-      flexDirection: 'column'
-    }
-	},
-
-	inputs: {
-		margin: '0 16px 0 8px'
-	}
-})
-
-Login.propTypes = {
-  logIn: PropTypes.func
-};
+// React Component
+const Login = () => (
+	<>
+		<div className={css(styles.login)}>
+			<p>Login to access the full dashboard</p>
+			<label htmlFor='email'>Email: </label>
+			<input
+				type='email'
+				name='email'
+				id='email'
+				placeholder='Enter your Email'
+			/>
+			{'\t'}
+			<br />
+			<label htmlFor='password'>password: </label>
+			<input
+				type='password'
+				name='password'
+				id='password'
+				placeholder='Enter your Password'
+			/>
+			<br />
+			<button className={css(styles.button)}>Login</button>
+		</div>
+	</>
+);
 
 export default Login;
