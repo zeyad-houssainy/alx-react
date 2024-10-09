@@ -6,7 +6,6 @@ import { StyleSheet, css} from "aphrodite"
 const styles = StyleSheet.create({
   login: {
     height: "48%",
-    border: "2px dashed green", //temp
   },
   button: {
     backgroundColor: "#f5f5f5ab",
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: "5px 5px",
     textAlign: "center",
-    // textDecoration: "none",
     width: "80px",
   },
 });
