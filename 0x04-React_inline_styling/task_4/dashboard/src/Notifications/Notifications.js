@@ -31,7 +31,7 @@ const translateKeyframes = {
 };
 
 const styles = StyleSheet.create({
-  hideMenu: {
+  hideItem: {
     display: "none"
   },
   notifications: {
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
   },
-
   bounceAnimation: {
     ":hover": {
       animationName: [opacityKeyframes, translateKeyframes],
@@ -111,13 +110,13 @@ const styles = StyleSheet.create({
             className={css([
               styles.menuItem,
               styles.bounceAnimation,
-              this.props.displayDrawer ? styles.hideMenu : "",
+              this.props.displayDrawer ? styles.hideItem : "",
             ])}
           >
             <p>Your notifications</p>
           </div>
-          {this.displayDrawer ? (
-            <div className={css(styles.notifications)}>
+          {this.props.displayDrawer && (
+            <div className={css([styles.notifications])}>
               <p className={css(styles.notificationsParagraph)}>
                 Here is the list of notifications
               </p>
@@ -130,10 +129,10 @@ const styles = StyleSheet.create({
                   background: "none",
                   padding: "0",
                 }}
+                onClick={() => console.log("Close button has been clicked")}
               >
                 <img
                   src={closeIcon}
-                  onClick={() => console.log("Close button has been clicked")}
                   alt="close icon"
                   className={css(styles.closeIcon)}
                 />
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
                 )}
               </ul>
             </div>
-          ) : null}
+          )}
         </>
       );
     }
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
     listNotifications: PropTypes.arrayOf(NotificationItemShape),
     id: PropTypes.number,
   };
-
+  
   Notifications.defaultProps = {
     displayDrawer: false,
     listNotifications: [],
