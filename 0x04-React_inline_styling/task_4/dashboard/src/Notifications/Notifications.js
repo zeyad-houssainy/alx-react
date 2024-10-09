@@ -17,17 +17,23 @@ const opacityKeyframes = {
 
 const translateKeyframes = {
   "0%": {
-    transform: "translateX(0)",
+    transform: "translateY(0)",
   },
   "50%": {
-    transform: "translateX(100px)",
+    transform: "translateY(5px)",
+  },
+  "75%": {
+    transform: "translateY(-5px)",
   },
   "100%": {
-    transform: "translateX(0)",
+    transform: "translateY(0)",
   },
 };
 
 const styles = StyleSheet.create({
+  hideMenu: {
+    display: "none"
+  },
   notifications: {
     padding: "1em",
     border: "2px dashed red",
@@ -58,6 +64,7 @@ const styles = StyleSheet.create({
   menuItem: {
     margin: "0",
     textAlign: "end",
+    backgroundColor: "#fff8f8",
   },
   closeIcon: {
     height: "10px",
@@ -65,10 +72,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
   },
-  zippyHeader: {
-    animationName: [opacityKeyframes, translateKeyframes],
-    animationDuration: "3s, 1200ms",
-    animationIterationCount: "infinite",
+
+  bounceAnimation: {
+    ":hover": {
+      animationName: [opacityKeyframes, translateKeyframes],
+      animationDuration: "1s, 500ms",
+      animationIterationCount: "3",
+      cursor: "pointer",
+    },
   },
 });
 
@@ -96,7 +107,13 @@ const styles = StyleSheet.create({
     render() {
       return (
         <>
-          <div className={css(styles.menuItem)}>
+          <div
+            className={css([
+              styles.menuItem,
+              styles.bounceAnimation,
+              this.props.displayDrawer ? styles.hideMenu : "",
+            ])}
+          >
             <p>Your notifications</p>
           </div>
           {this.displayDrawer ? (
@@ -121,7 +138,7 @@ const styles = StyleSheet.create({
                   className={css(styles.closeIcon)}
                 />
               </button>
-              <ul className={css([styles.ul, styles.zippyHeader])}>
+              <ul className={css(styles.ul)}>
                 {this.listNotifications.length > 0 ? (
                   this.listNotifications.map((notification) => {
                     return (
@@ -153,7 +170,7 @@ const styles = StyleSheet.create({
   };
 
   Notifications.defaultProps = {
-    displayDrawer: true,
+    displayDrawer: false,
     listNotifications: [],
   };
 
