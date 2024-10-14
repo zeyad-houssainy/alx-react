@@ -15,6 +15,8 @@ import BodySection from "../BodySection/BodySection"
 // Test React Features files
 import TestingInlineStyle from "../testingFeature/sampleText";
 import TestReactFeatureWithBorder from "../testingFeature/TestingFeature";
+import ReactStateFunctionTest from "../testingFeature/reactStateFeature";
+
 
 //Aphrodite CSS styling 
 reset();
@@ -63,6 +65,17 @@ class App extends React.Component {
     this.isLoggedIn = props.isLoggedIn;
     this.logOut = props.logOut;
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.state = {
+      displayDrawer: false,
+    };
+  }
+
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+  }
+  
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
   }
 
   // Add an event listener when the component is
@@ -86,11 +99,14 @@ class App extends React.Component {
   };
 
   render() {
-
-
     return (
       <>
-        <Notifications listNotifications={mockListNotifications} />
+        <Notifications
+          listNotifications={mockListNotifications}
+          displayDrawer={this.state.displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer}
+          handleHideDrawer={this.handleHideDrawer}
+        />
         <Header />
         <div className={css(styles.body)}>
           {this.props.isLoggedIn ? (
@@ -104,11 +120,19 @@ class App extends React.Component {
           )}
           <BodySection title="News from the School">
             <p className={css(styles.test)}>I'm Batman 🦇</p>
+            <img
+              src="https://media.giphy.com/media/V1FPUW4nB97bi/giphy.gif?cid=ecf05e477ro1ueyzskifwlf6xkarpx8pc3imf540774z21u1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+              alt="Batman Image"
+              width="500"
+              height="300"
+            />
           </BodySection>
         </div>
         <Footer />
-        {/* <TestingInlineStyle style={styles.test} />
-        <TestReactFeatureWithBorder className={css(styles.test)} /> */}
+        {/* // Testing React Features below */}
+        {/* <TestingInlineStyle style={styles.test} /> */}
+        {/* <TestReactFeatureWithBorder className={css(styles.test)} /> */}
+        {/* <ReactStateFunctionTest /> */}
       </>
     );
   }
