@@ -72,6 +72,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
   },
+  closeButton: {
+    position: "absolute",
+    top: "12px",
+    right: "12px",
+    border: "none",
+    background: "none",
+    padding: "0",
+  },
   bounceAnimation: {
     ":hover": {
       animationName: [opacityKeyframes, translateKeyframes],
@@ -83,7 +91,6 @@ const styles = StyleSheet.create({
 });
 
 
-
 // React Component
   class Notifications extends React.Component {
     constructor(props) {
@@ -93,14 +100,16 @@ const styles = StyleSheet.create({
       this.markAsRead = this.markAsRead.bind(this);
     }
 
-    markAsRead = (id) => {
+    markAsRead(id) {
       console.log(`Notification (${id}) has been marked as read`);
     };
 
     shouldComponentUpdate(newProps) {
-      if (newProps.listNotifications.length > this.props.listNotifications.length) {
-        return true;
-      }
+      return (
+        newProps.listNotifications.length >
+          this.props.listNotifications.length ||
+        newProps.displayDrawer !== this.props.displayDrawer
+      );
     }
 
     render() {
@@ -112,6 +121,7 @@ const styles = StyleSheet.create({
               styles.bounceAnimation,
               this.props.displayDrawer ? styles.hideItem : "",
             ])}
+            onClick={this.props.handleDisplayDrawer}
           >
             <p>Your notifications</p>
           </div>
@@ -121,15 +131,11 @@ const styles = StyleSheet.create({
                 Here is the list of notifications
               </p>
               <button
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  right: "12px",
-                  border: "none",
-                  background: "none",
-                  padding: "0",
+                className={css(styles.closeButton)}
+                onClick={() => {
+                  console.log("Close button has been clicked")
+                  this.props.handleHideDrawer()
                 }}
-                onClick={() => console.log("Close button has been clicked")}
               >
                 <img
                   src={closeIcon}
@@ -166,11 +172,16 @@ const styles = StyleSheet.create({
     displayDrawer: PropTypes.bool,
     listNotifications: PropTypes.arrayOf(NotificationItemShape),
     id: PropTypes.number,
+    handleDisplayDrawer: PropTypes.func,
+    handleHideDrawer: PropTypes.func,
   };
   
   Notifications.defaultProps = {
     displayDrawer: false,
     listNotifications: [],
+    handleDisplayDrawer: () => {},
+    handleHideDrawer: () => {}
   };
 
   export default Notifications;
+
