@@ -52,7 +52,6 @@ const Login = () => {
   }
 
   const handleChangeEmail = (e) => {
-    if (email)
     setEmail(e.target.value);
   }
 
@@ -73,18 +72,18 @@ const Login = () => {
     <>
       <div className={css(styles.login)}>
         <p>Login to access the full dashboard</p>
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter your Email"
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        {"\t"}
-        <br />
         <form onSubmit={handleLoginSubmit}>
+          <label htmlFor="email">Email: </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your Email"
+            value={email}
+            onChange={handleChangeEmail}
+            required
+          />
+          <br />
           <label htmlFor="password">password: </label>
           <input
             type="password"
@@ -93,13 +92,17 @@ const Login = () => {
             placeholder="Enter your Password"
             value={password}
             onChange={handleChangePassword}
-            />
+            required
+          />
           <br />
           <input
             type="submit"
-            className={css(enableSubmit ? styles.button : styles.buttonDisabled)} 
+            className={css(
+              enableSubmit ? styles.button : styles.buttonDisabled
+            )}
             value="Login"
             disabled={!enableSubmit}
+            onClick={setIsLoggedIn(true)}
           />
         </form>
       </div>

@@ -11,6 +11,7 @@ import Notifications from "../Notifications/Notifications";
 import { getLatestNotification } from "../utils/utils";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom"
 import BodySection from "../BodySection/BodySection"
+import AppContext, {user, logOut} from "./AppContext"
 
 // Test React Features files
 import TestingInlineStyle from "../testingFeature/sampleText";
@@ -52,6 +53,7 @@ const mockListCourses = [
   { id: 3, name: "React", credit: 40 },
 ];
 
+//mock inputs
 const mockListNotifications = [
   { id: 1, type: "default", value: "New course available" },
   { id: 2, type: "urgent", value: "New resume available" },
@@ -62,47 +64,73 @@ const mockListNotifications = [
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.listenerAdded = false;
     this.isLoggedIn = props.isLoggedIn;
-    this.logOut = props.logOut;
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+    // this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.state = {
       displayDrawer: false,
+      user,
+      logOut: this.logOut,
     };
   }
 
+  // Hide/Display Drawer 
   handleDisplayDrawer() {
     this.setState({ displayDrawer: true });
   }
-  
+
   handleHideDrawer() {
     this.setState({ displayDrawer: false });
   }
 
-  // Add an event listener when the component is
-  // mounted to listen to when the user is pressing down the keyboard keys
-  handleKeyDown = (e) => {
-    e.preventDefault();
-    if (e.ctrlKey && e.key == "h") {
-      alert("Logging you out");
-      this.logOut();
-    } else {
-      console.log(`You pressed ${e.key}`);
-    }
-  };
+  //LogIn/logOut functions
+  logIn(email, password) {
+    this.setState({email, password, isLoggedIn: true});
+  }
 
+  logOut() {
+    this.setState({email: "", password: "", isLoggedIn:false})
+  }
+
+
+  // print what is typed with keyboard
+  // handleKeyDown = (e) => {
+  //   e.preventDefault();
+  //   if (e.ctrlKey && e.key == "h") {
+  //     alert("Logging you out");
+  //     this.logOut();
+  //   } else {
+  //     console.log(`You pressed ${e.key}`);
+  //   }
+  // };
+
+  // Component lifecycle
   componentDidMount = () => {
-    window.addEventListener("keydown", this.handleKeyDown);
+    if (!this.listenerAdded) {
+      // window.addEventListener("keydown", this.handleKeyDown);
+      console.log(user)
+      // add this line below to make the component run only once
+      this.listenerAdded = true;
+    }
   };
 
   componentWillUnmount = () => {
     window.removeEventListener("keydown", this.handleKeyDown);
   };
 
+  // Component render
   render() {
+    //destruct state variables
+    const {isLoggedIn} = this.state.user.isLoggedIn
+
     return (
-      <>
+      <AppContext.Provider
+        value={{ user: this.state.user, logOut: this.logOut }}
+      >
         <Notifications
           listNotifications={mockListNotifications}
           displayDrawer={this.state.displayDrawer}
@@ -111,7 +139,7 @@ class App extends React.Component {
         />
         <Header />
         <div className={css(styles.body)}>
-          {this.props.isLoggedIn ? (
+          {this.state.user.isLoggedIn ? ( // this line might be incorrect
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={mockListCourses} />
             </BodySectionWithMarginBottom>
@@ -125,9 +153,19 @@ class App extends React.Component {
             <img
               src="https://media.giphy.com/media/V1FPUW4nB97bi/giphy.gif?cid=ecf05e477ro1ueyzskifwlf6xkarpx8pc3imf540774z21u1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
               alt="Batman Image"
-              width="500"
+              width="55%"
               height="300"
             />
+            <iframe
+              style={{ borderRadius: "12px" }}
+              src="https://open.spotify.com/embed/track/0q6LuUqGLUiCPP1cbdwFs3?utm_source=generator"
+              width="55%"
+              height="20%"
+              frameBorder="0"
+              allowFullScreen
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>{" "}
           </BodySection>
         </div>
         <Footer />
@@ -135,7 +173,7 @@ class App extends React.Component {
         {/* <TestingInlineStyle style={styles.test} /> */}
         {/* <TestReactFeatureWithBorder className={css(styles.test)} /> */}
         {/* <ReactStateFunctionTest /> */}
-      </>
+      </AppContext.Provider>
     );
   }
 }
