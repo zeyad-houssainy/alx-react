@@ -54,10 +54,15 @@ const mockListCourses = [
 ];
 
 //mock inputs
+// const mockListNotifications = [
+//   { id: 1, type: "default", value: "New course available" },
+//   { id: 2, type: "urgent", value: "New resume available" },
+//   { id: 3, type: "urgent", html: getLatestNotification() }, // {__html: getLatestNotification()} use this instead but will not get deisred output
+// ];
 const mockListNotifications = [
   { id: 1, type: "default", value: "New course available" },
   { id: 2, type: "urgent", value: "New resume available" },
-  { id: 3, type: "urgent", html: getLatestNotification() }, // {__html: getLatestNotification()} use this instead but will not get deisred output
+  { id: 3, type: "urgent", html: { __html: "<strong>Urgent requirement</strong> - complete by EOD" } }
 ];
 
 // App Class Component 
@@ -96,18 +101,6 @@ class App extends React.Component {
     this.setState({email: "", password: "", isLoggedIn:false})
   }
 
-
-  // print what is typed with keyboard
-  // handleKeyDown = (e) => {
-  //   e.preventDefault();
-  //   if (e.ctrlKey && e.key == "h") {
-  //     alert("Logging you out");
-  //     this.logOut();
-  //   } else {
-  //     console.log(`You pressed ${e.key}`);
-  //   }
-  // };
-
   // Component lifecycle
   componentDidMount = () => {
     if (!this.listenerAdded) {
@@ -125,54 +118,56 @@ class App extends React.Component {
   // Component render
   render() {
     //destruct state variables
-    const {isLoggedIn} = this.state.user.isLoggedIn
+    const { isLoggedIn } = this.state.user;
+    const { displayDrawer } = this.state;
+    const contextVal = { user: this.state.user, logOut: this.state.logOut };
 
     return (
-      <AppContext.Provider
-        value={{ user: this.state.user, logOut: this.logOut }}
-      >
+      <AppContext.Provider value={{ contextVal }}>
         <Notifications
           listNotifications={mockListNotifications}
-          displayDrawer={this.state.displayDrawer}
+          displayDrawer={this.statedisplayDrawer}
           handleDisplayDrawer={this.handleDisplayDrawer}
           handleHideDrawer={this.handleHideDrawer}
         />
         <Header />
-        <div className={css(styles.body)}>
-          {this.state.user.isLoggedIn ? ( // this line might be incorrect
-            <BodySectionWithMarginBottom title="Course list">
-              <CourseList listCourses={mockListCourses} />
-            </BodySectionWithMarginBottom>
-          ) : (
-            <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
-            </BodySectionWithMarginBottom>
-          )}
-          <BodySection title="News from the School">
-            <p className={css(styles.test)}>I'm Batman 🦇</p>
-            <img
-              src="https://media.giphy.com/media/V1FPUW4nB97bi/giphy.gif?cid=ecf05e477ro1ueyzskifwlf6xkarpx8pc3imf540774z21u1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-              alt="Batman Image"
-              width="55%"
-              height="300"
-            />
-            <iframe
-              style={{ borderRadius: "12px" }}
-              src="https://open.spotify.com/embed/track/0q6LuUqGLUiCPP1cbdwFs3?utm_source=generator"
-              width="55%"
-              height="20%"
-              frameBorder="0"
-              allowFullScreen
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            ></iframe>{" "}
-          </BodySection>
-        </div>
+        <body>
+          <div className={css(styles.body)}>
+            {isLoggedIn ? ( // this line might be incorrect
+              <BodySectionWithMarginBottom title="Course list">
+                <CourseList listCourses={mockListCourses} />
+              </BodySectionWithMarginBottom>
+            ) : (
+              <BodySectionWithMarginBottom title="Log in to continue">
+                <Login />
+              </BodySectionWithMarginBottom>
+            )}
+            <BodySection title="News from the School">
+              <p className={css(styles.test)}>I'm Batman 🦇</p>
+              <img
+                src="https://media.giphy.com/media/V1FPUW4nB97bi/giphy.gif?cid=ecf05e477ro1ueyzskifwlf6xkarpx8pc3imf540774z21u1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                alt="Batman Image"
+                width="55%"
+                height="300"
+              />
+              <iframe
+                style={{ borderRadius: "12px" }}
+                src="https://open.spotify.com/embed/track/0q6LuUqGLUiCPP1cbdwFs3?utm_source=generator"
+                width="55%"
+                height="20%"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>{" "}
+            </BodySection>
+          </div>
+        </body>
         <Footer />
-        {/* // Testing React Features below */}
-        {/* <TestingInlineStyle style={styles.test} /> */}
-        {/* <TestReactFeatureWithBorder className={css(styles.test)} /> */}
-        {/* <ReactStateFunctionTest /> */}
+        {/* Testing React Features below  */}
+        <TestingInlineStyle style={styles.test} />
+        <TestReactFeatureWithBorder className={css(styles.test)} />
+        <ReactStateFunctionTest />
       </AppContext.Provider>
     );
   }
